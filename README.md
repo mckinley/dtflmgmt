@@ -70,4 +70,5 @@ DOTFILES_GITHUB_USER="xxx"
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mckinley/dtflmgmt/master/[script])"`
 
 example:
+
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mckinley/dtflmgmt/master/install.sh)"`
