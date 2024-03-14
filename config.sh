@@ -44,7 +44,7 @@ echo "cd"
 echo "dot status"
 echo "dot add ~/.zshrc"
 echo "dot commit -m \"Configure shell for dotfiles\""
-echo "dot push -u origin main"
+echo "dot push"
 
 echo "Resetting shell"
 exec zsh
