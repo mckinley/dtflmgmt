@@ -64,3 +64,9 @@ DOTFILES_GITHUB_USER="xxx"
 ## Remove all dtflmgmt artifacts
 
 `./uninstall.sh`
+
+## To use these scripts without cloning the repo, use the following pattern:
+
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mckinley/dtflmgmt/master/[script])"`
+
+example: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mckinley/dtflmgmt/master/install.sh)"`
