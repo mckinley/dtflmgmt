@@ -11,8 +11,6 @@ xcode-select --install
 
 echo "- Installing Homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
-echo "- Configuring system for Homebrew"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo "- Installing dependencies"
