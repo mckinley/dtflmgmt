@@ -4,7 +4,7 @@
 # Installs software required by dtflmgmt.
 # These instalations will not be cleaned up by the revert tool.
 
-echo "Provisioning dotfiles..."
+echo "Provisioning for dtflmgmt..."
 
 echo "- Installing Xcode Command Line Tools"
 xcode-select --install
