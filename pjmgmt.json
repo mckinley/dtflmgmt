@@ -1,0 +1,10 @@
+{
+  "name": "dtflmgmt",
+  "status": "active",
+  "projects": [
+    {
+      "name": "dtflmgmt",
+      "path": "."
+    }
+  ]
+}
