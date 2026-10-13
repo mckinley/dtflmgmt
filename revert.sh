@@ -9,16 +9,29 @@
 
 echo "Reverting dotfiles..."
 
-BACKUPS_DIR="$DOTFILES_DIR/backups"
-LAST_BACKUP="$BACKUPS_DIR/$(ls -tr "$BACKUPS_DIR" | tail -n 1)"
+[[ -z "$DOTFILES_DIR" ]] && DOTFILES_DIR="$HOME/.dotfiles"
 
-[[ -z "$LAST_BACKUP" ]] && echo "No backups where found at $BACKUPS_DIR." && return
+BACKUPS_DIR="$DOTFILES_DIR/backups"
+
+# install.sh names each backup dir YYYY-MM-DD-<epoch seconds>, so the newest sorts last.
+LAST_BACKUP=""
+if [[ -d "$BACKUPS_DIR" ]]; then
+  LAST_BACKUP="$(find "$BACKUPS_DIR" -mindepth 1 -maxdepth 1 -type d | sort | tail -n 1)"
+fi
+
+if [[ -z "$LAST_BACKUP" ]]; then
+  echo "No backups were found at $BACKUPS_DIR." >&2
+  exit 1
+fi
 
 echo "- Last backup: $LAST_BACKUP"
 
-rsync --recursive --checksum --verbose \
+if ! rsync --recursive --checksum --verbose \
   --exclude ".DS_Store" \
-  "$LAST_BACKUP/" "$HOME/"
+  "$LAST_BACKUP/" "$HOME/"; then
+  echo "Restoring from $LAST_BACKUP failed. The backup has been kept." >&2
+  exit 1
+fi
 rm -rf "$LAST_BACKUP"
 
 echo "Revert complete."

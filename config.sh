@@ -20,20 +20,26 @@ dotfiles add ~/.zshrc
 
 echo "- Adding dotfile config to ~/.zshrc"
 
-echo "-- Adding dotfile aliases for home git dir"
-{
-  echo ""
-  echo "# <Dotfiles>"
-  echo "alias dotfiles='git --git-dir=$GIT_DIR --work-tree=\$HOME'"
-  echo "alias dot=dotfiles"
-} >> ~/.zshrc
+# The block is delimited by marker lines so that re-running this script doesn't
+# add it twice and uninstall.sh can find and remove it.
+if grep -qxF "# <Dotfiles>" ~/.zshrc; then
+  echo "-- ~/.zshrc already has a '# <Dotfiles>' block, leaving it unchanged"
+else
+  echo "-- Adding dotfile aliases for home git dir"
+  {
+    echo ""
+    echo "# <Dotfiles>"
+    echo "alias dotfiles='git --git-dir=$GIT_DIR --work-tree=\$HOME'"
+    echo "alias dot=dotfiles"
+  } >> ~/.zshrc
 
-echo "-- Adding ~/.zshrc.local detection"
-{
-  echo "[[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local"
-  echo "# </Dotfiles>"
-  echo ""
-} >> ~/.zshrc
+  echo "-- Adding ~/.zshrc.local detection"
+  {
+    echo "[[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local"
+    echo "# </Dotfiles>"
+    echo ""
+  } >> ~/.zshrc
+fi
 
 echo "Setup complete."
 

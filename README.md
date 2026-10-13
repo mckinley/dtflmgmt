@@ -21,11 +21,22 @@ https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-th
 ### Personal access token
 https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
 
+## Environment variables
+
+The scripts read these, and prompt for the GitHub ones when they're missing. Export them so the scripts can see them.
+
+- `DOTFILES_GITHUB_USER`: your GitHub username (`install.sh`)
+- `DOTFILES_GITHUB_REPO`: the name of your dotfiles repository (`repo.sh`, `install.sh`)
+- `DOTFILES_GITHUB_TOKEN`: a personal access token with `repo` permissions (`repo.sh`)
+- `DOTFILES_DIR`: where dtflmgmt keeps the git dir and backups. Defaults to `~/.dotfiles`.
+
+The older unprefixed names `GITHUB_USER`, `GITHUB_REPO` and `GITHUB_TOKEN` still work as a fallback when the `DOTFILES_` names aren't set.
+
 ## Create new dotfile repository
 
 ```
-DOTFILES_GITHUB_REPO="xxx"
-DOTFILES_GITHUB_TOKEN="xxx"
+export DOTFILES_GITHUB_REPO="xxx"
+export DOTFILES_GITHUB_TOKEN="xxx"
 ```
 
 `./provision.sh`
@@ -39,8 +50,8 @@ DOTFILES_GITHUB_TOKEN="xxx"
 ## Install dotfiles
 
 ```
-DOTFILES_GITHUB_REPO="xxx"
-DOTFILES_GITHUB_USER="xxx"
+export DOTFILES_GITHUB_REPO="xxx"
+export DOTFILES_GITHUB_USER="xxx"
 ```
 
 `./provision.sh`
@@ -57,13 +68,19 @@ DOTFILES_GITHUB_USER="xxx"
 
 `./config.sh`
 
+This adds a block between `# <Dotfiles>` and `# </Dotfiles>` to `~/.zshrc`. If that block is already there, it's left alone, so running it again is safe.
+
 ## Revert dotfiles that were changed by the install script
 
 `./revert.sh`
 
+Each run restores the most recent backup and then deletes it, so run it again to step further back. It exits with an error when there are no backups left.
+
 ## Remove all dtflmgmt artifacts
 
 `./uninstall.sh`
+
+This removes the `# <Dotfiles>` block from `~/.zshrc` and deletes `DOTFILES_DIR`. Backups are copied to `~/dotfile-history` first, unless you pass `--delete-backups`.
 
 ## To use these scripts without cloning the repo, use the following pattern:
 
