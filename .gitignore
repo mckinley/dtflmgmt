@@ -1,0 +1,8 @@
+# Secrets: never commit. Dev defaults and blank examples are committed (pjmgmt env-vars standard).
+.env
+.env.*
+.dev.vars
+.dev.vars.*
+!.env.development
+!.env.example
+!.dev.vars.example
