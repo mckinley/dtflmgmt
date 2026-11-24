@@ -11,7 +11,7 @@ only explicitly added files show up.
 
 There's no build, package manager, test suite or CI. Each script is standalone, and the
 README shows how to run any of them straight from GitHub with
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mckinley/dtflmgmt/master/<script>)"`.
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mckinley/dtflmgmt/main/<script>)"`.
 
 | Script | What it does |
 |---|---|
@@ -28,8 +28,8 @@ Layout on disk: `DOTFILES_DIR` defaults to `~/.dotfiles`, with `git/` (the repo)
 ## Releasing
 
 There's nothing to deploy. Users run the scripts from the default branch, either a clone
-or the raw GitHub URLs above, so a push to `main` is a release. The README's raw URLs say
-`master`; they still resolve, but `main` is the real branch.
+or the raw GitHub URLs above, so a push to `main` is a release. Older copies of the README used `master` in the raw
+URLs; GitHub still redirects those to `main`.
 
 ## Rules and gotchas
 

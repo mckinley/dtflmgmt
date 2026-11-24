@@ -84,8 +84,8 @@ This removes the `# <Dotfiles>` block from `~/.zshrc` and deletes `DOTFILES_DIR`
 
 ## To use these scripts without cloning the repo, use the following pattern:
 
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mckinley/dtflmgmt/master/[script])"`
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mckinley/dtflmgmt/main/[script])"`
 
 example:
 
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mckinley/dtflmgmt/master/install.sh)"`
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mckinley/dtflmgmt/main/install.sh)"`
